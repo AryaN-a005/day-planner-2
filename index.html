@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Private Cloud</title>
+    <style>
+      /* ---------- Base ---------- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: #f8fafc;
+        color: #1e293b;
+        line-height: 1.6;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ---------- Container ---------- */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* ---------- Header ---------- */
+      header {
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 0;
+      }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav-logo {
+        background: linear-gradient(to right, #4f46e5, #06b6d4);
+        color: white;
+        border-radius: 8px;
+        padding: 6px;
+      }
+      .nav-title h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+      .nav-title p {
+        font-size: 0.75rem;
+        color: #64748b;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .nav-links a {
+        font-size: 0.9rem;
+        color: #475569;
+        transition: 0.2s;
+      }
+      .nav-links a:hover {
+        color: #4f46e5;
+      }
+      .btn {
+        background: #4f46e5;
+        color: #fff;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .btn:hover {
+        background: #4338ca;
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        padding: 5rem 0;
+        align-items: center;
+      }
+      .hero-text h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #111827;
+      }
+      .hero-text p {
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        color: #475569;
+      }
+      .hero-actions {
+        margin-top: 2rem;
+      }
+      .hero-actions .btn-secondary {
+        background: transparent;
+        color: #4f46e5;
+        border: 1px solid #4f46e5;
+      }
+      .hero-actions .btn-secondary:hover {
+        background: #eef2ff;
+      }
+
+      .hero-image {
+        position: relative;
+      }
+      .hero-image img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      .hero-stats {
+        position: absolute;
+        bottom: -20px;
+        left: 20px;
+        display: flex;
+        gap: 1rem;
+      }
+      .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        width: 130px;
+      }
+      .stat-card div:first-child {
+        font-weight: 600;
+      }
+      .stat-card div:last-child {
+        font-size: 0.8rem;
+        color: #64748b;
+      }
+
+      /* ---------- Features ---------- */
+      section {
+        padding: 4rem 0;
+      }
+      .section-title {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+      .section-title h3 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #111827;
+      }
+      .section-title p {
+        color: #475569;
+        margin-top: 0.5rem;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+      .feature-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        transition: 0.2s;
+      }
+      .feature-card:hover {
+        transform: translateY(-4px);
+      }
+      .feature-card h4 {
+        color: #4f46e5;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      .feature-card p {
+        color: #475569;
+        font-size: 0.9rem;
+      }
+
+      /* ---------- Pricing ---------- */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+      }
+      .pricing-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        text-align: left;
+      }
+      .pricing-card.highlight {
+        background: #4f46e5;
+        color: white;
+      }
+      .pricing-card h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+      .pricing-card .price {
+        font-size: 0.9rem;
+        color: #94a3b8;
+      }
+      .pricing-card.highlight .price {
+        color: #e0e7ff;
+      }
+      .pricing-card ul {
+        list-style: none;
+        margin-top: 1rem;
+        line-height: 1.8;
+      }
+      .pricing-card li {
+        font-size: 0.9rem;
+      }
+      .pricing-card button {
+        margin-top: 1.5rem;
+        width: 100%;
+      }
+
+      /* ---------- Contact ---------- */
+      .contact {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 0.9rem;
+      }
+      .contact-form textarea {
+        height: 100px;
+      }
+      .contact-form .btn {
+        width: 100%;
+      }
+      .contact-side {
+        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+        color: white;
+        border-radius: 16px;
+        padding: 2rem;
+      }
+      .contact-side h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+      .contact-side ul {
+        margin-top: 1rem;
+        list-style: none;
+        font-size: 0.9rem;
+      }
+      .contact-side li {
+        margin: 0.5rem 0;
+      }
+
+      /* ---------- Footer ---------- */
+      footer {
+        background: #fff;
+        border-top: 1px solid #e2e8f0;
+        padding: 2rem 0;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #64748b;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .contact {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container nav">
+        <div class="nav-left">
+          <div class="nav-logo">☁️</div>
+          <div class="nav-title">
+            <h1>UniCloud - AV</h1>
+            <p>University Private Cloud</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+          <button class="btn">Request Demo</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-text">
+        <h2>Private cloud built for universities</h2>
+        <p>
+          Secure, compliant, and cost-efficient infrastructure that helps
+          faculty and students run experiments, store data, and collaborate
+          across departments.
+        </p>
+        <div class="hero-actions">
+          <button class="btn">Start Free</button>
+          <button class="btn btn-secondary">Book a Demo</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1600"
+          alt="University cloud"
+        />
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div>200+</div>
+            <div>Active users</div>
+          </div>
+          <div class="stat-card">
+            <div>120 TB</div>
+            <div>Total storage</div>
+          </div>
+          <div class="stat-card">
+            <div>SOC2 Ready</div>
+            <div>Compliance</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="container">
+      <div class="section-title">
+        <h3>Features built for academia</h3>
+        <p>
+          Carefully designed for research reproducibility, collaboration, and
+          governance.
+        </p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>🔐 Secure Research Storage</h4>
+          <p>
+            Encrypted, access-controlled storage for sensitive research data and
+            collaboration.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h4>🧮 Custom Compute</h4>
+          <p>
+            Provision VMs and GPU nodes on demand for simulations, ML training,
+            and analytics.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h4>👥 Shared Collaboration</h4>
+          <p>
+            Teams and departments collaborate with fine-grained sharing and
+            versioning.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h4>📊 Compliance & Audit</h4>
+          <p>
+            Built-in logging, audit trails, and compliance controls for research
+            governance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="container">
+      <div class="section-title">
+        <h3>Flexible pricing</h3>
+        <p>
+          Plans for departments, labs, and campus-wide deployments. Academic
+          discounts available.
+        </p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h4>Starter (Dept)</h4>
+          <div class="price">Free</div>
+          <ul>
+            <li>50 GB storage</li>
+            <li>2 vCPU / 4 GB RAM</li>
+            <li>Community support</li>
+          </ul>
+          <button class="btn">Choose</button>
+        </div>
+        <div class="pricing-card highlight">
+          <h4>Research Lab</h4>
+          <div class="price">$199 / month</div>
+          <ul>
+            <li>2 TB storage</li>
+            <li>8 vCPU / 32 GB RAM</li>
+            <li>Priority support</li>
+          </ul>
+          <button class="btn">Contact Sales</button>
+        </div>
+        <div class="pricing-card">
+          <h4>Enterprise</h4>
+          <div class="price">Custom</div>
+          <ul>
+            <li>Unlimited projects</li>
+            <li>Dedicated hardware</li>
+            <li>SLA & training</li>
+          </ul>
+          <button class="btn">Choose</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container">
+      <div class="contact">
+        <div>
+          <h3>Talk to our campus solutions team</h3>
+          <p>
+            We can help you design a private cloud deployment that meets your
+            policy and budget.
+          </p>
+          <form class="contact-form" style="margin-top: 1.5rem">
+            <input type="text" placeholder="Full name" required />
+            <br /><br />
+            <input type="email" placeholder="Email" required />
+            <br /><br />
+            <textarea placeholder="Brief requirements"></textarea>
+            <br /><br />
+            <button class="btn" type="submit">Submit Request</button>
+          </form>
+        </div>
+        <div class="contact-side">
+          <h4>Campus-wide features</h4>
+          <ul>
+            <li>✅ Centralized billing & chargeback</li>
+            <li>✅ Department quotas & user roles</li>
+            <li>✅ Integration with campus SSO</li>
+          </ul>
+          <button
+            class="btn"
+            style="margin-top: 1rem; background: white; color: #4f46e5"
+          >
+            Schedule a workshop
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>© 2025 UniCloud — Built for higher education</footer>
+  </body>
+</html>
